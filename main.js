@@ -13,18 +13,7 @@ const alice1 = document.querySelector("#alice1");
 const alice2 = document.querySelector("#alice2");
 const alice3 = document.querySelector("#alice3");
 
-function doStep1() {
-  alice1.animate(aliceTumbling, aliceTiming);
-}
-
-function doStep2() {
-  alice2.animate(aliceTumbling, aliceTiming);
-}
-
-function doStep3() {
-  alice3.animate(aliceTumbling, aliceTiming);
-}
-
-doStep1();
-setTimeout(doStep2, aliceTiming.duration);
-setTimeout(doStep3, aliceTiming.duration*2);
+alice1.animate(aliceTumbling, aliceTiming).finished
+  .then(() => alice2.animate(aliceTumbling, aliceTiming).finished)
+  .then(() => alice3.animate(aliceTumbling, aliceTiming).finished)
+  .catch(error => console.error(`Error animating ${error}`));
